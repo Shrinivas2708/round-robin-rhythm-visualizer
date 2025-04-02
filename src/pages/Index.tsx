@@ -219,44 +219,6 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Simulation Control */}
-        {simulationResults && (
-          <SimulationControl
-            onStart={startSimulation}
-            onPause={stopSimulation}
-            onReset={resetSimulation}
-            onStepForward={stepForward}
-            onStepBackward={stepBackward}
-            onSpeedChange={setPlaybackSpeed}
-            isPlaying={isPlaying}
-            currentStep={currentStepIndex}
-            totalSteps={simulationResults.steps.length}
-            speed={playbackSpeed}
-            currentTime={currentStep?.time || null}
-            isSimulated={isSimulated}
-          />
-        )}
-        
-        {/* Gantt Chart Visualization */}
-        {simulationResults && (
-          <GanttChart
-            ganttItems={simulationResults.ganttChart}
-            currentTime={currentStep?.time || null}
-            processColors={processColors}
-            processNames={processNames}
-          />
-        )}
-        
-        {/* Simulation Results */}
-        {simulationResults && (
-          <ResultsTable
-            processes={simulationResults.processes}
-            averageWaitingTime={simulationResults.averageWaitingTime}
-            averageTurnaroundTime={simulationResults.averageTurnaroundTime}
-          />
-        )}
-        
-        {/* Process Queue Visualization */}
         {simulationResults && currentStep && (
           <div className="bg-white p-4 rounded-md shadow-md">
             <h2 className="text-xl font-semibold mb-4">Ready Queue</h2>
@@ -300,16 +262,49 @@ const Index = () => {
             )}
           </div>
         )}
+
+        {/* Simulation Control */}
+        {simulationResults && (
+          <SimulationControl
+            onStart={startSimulation}
+            onPause={stopSimulation}
+            onReset={resetSimulation}
+            onStepForward={stepForward}
+            onStepBackward={stepBackward}
+            onSpeedChange={setPlaybackSpeed}
+            isPlaying={isPlaying}
+            currentStep={currentStepIndex}
+            totalSteps={simulationResults.steps.length}
+            speed={playbackSpeed}
+            currentTime={currentStep?.time || null}
+            isSimulated={isSimulated}
+          />
+        )}
+        
+        {/* Gantt Chart Visualization */}
+        {simulationResults && (
+          <GanttChart
+            ganttItems={simulationResults.ganttChart}
+            currentTime={currentStep?.time || null}
+            processColors={processColors}
+            processNames={processNames}
+          />
+        )}
+        
+        {/* Simulation Results */}
+        {simulationResults && (
+          <ResultsTable
+            processes={simulationResults.processes}
+            averageWaitingTime={simulationResults.averageWaitingTime}
+            averageTurnaroundTime={simulationResults.averageTurnaroundTime}
+          />
+        )}
+        
+        {/* Process Queue Visualization */}
+        
       </main>
       
-      <footer className="bg-white border-t border-border py-4">
-        <div className="container text-center text-sm text-muted-foreground">
-          <p>Round Robin CPU Scheduler Visualization</p>
-          <p className="mt-1">
-            Built with React, Vite, and Tailwind CSS
-          </p>
-        </div>
-      </footer>
+     
     </div>
   );
 };
